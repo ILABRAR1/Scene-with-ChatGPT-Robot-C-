@@ -1,0 +1,267 @@
+#include <GLUT/glut.h>
+#include <OpenGL/OpenGL.h>
+#include <stdlib.h>
+#include <iostream>
+
+using namespace std;
+GLint win_width = 500;
+GLint win_hight = 500;
+float transvalue=4.0;
+
+
+void reshapeFunc(GLint new_width, GLint new_hight)
+{
+    glViewport(0, 0, new_width, new_hight);
+    win_width = new_width;
+    win_hight = new_hight;
+
+}
+
+
+void draw_rectangle() {
+    glBegin(GL_QUADS);
+    glColor3d(0.50, 0, 0);
+    glVertex3f(-5, -5, -5);
+    glColor3d(0.70, 0, 0);
+    glVertex3f(5, -5, -5);
+    glColor3d(1.50, 0, 0);
+    glVertex3f(5, 5, -5);
+    glColor3d(100, 0, 0);
+    glVertex3f(-5, 5, 5);
+    glEnd();
+}
+
+void display()
+{
+    glPushMatrix();
+    glTranslatef(transvalue, 0.0, 0.0);
+    draw_rectangle();
+    glPopMatrix();
+   
+    glutSwapBuffers();
+}
+
+static void play(void)
+{
+    glutPostRedisplay();
+}
+
+static
+void key(unsigned char keyPressed, int x, int y) // key handling
+{
+    
+    switch (keyPressed) {
+
+    case 't':
+        transvalue += 0.1;
+        cout << "The new translation value is:" << transvalue << endl;
+        break;
+
+    case 'T':
+        transvalue -= 0.1;
+        cout << "The new translation value is:" << transvalue << endl;
+        break;
+
+    case 'q':
+    case 27:
+        exit(0);
+        break;
+
+    default:
+        fprintf(stderr, "\nKeyboard commands:\n\n"
+            "q, <esc> - Quit\n");
+        break;
+    }
+}
+
+
+void stage(){
+
+        
+    glColor3f(0.65, 0.50 ,0.39);
+    glBegin(GL_POLYGON);
+        glVertex2f(-1.0f, -1.0f);
+        glVertex2f(-1.0f, -0.2f);
+        glVertex2f(1.0f, -0.2f);
+        glVertex2f(1.0f, -1.0f);
+    glEnd();
+    
+}
+
+void line(){
+
+    
+    glColor3f(0.0, 0.0 ,0.0);
+    glBegin(GL_LINES);
+    
+    //line between the floor and the wall for stage
+    glVertex2f(1.0f, -0.2f);
+    glVertex2f(-1.0f, -0.2f);
+    glVertex2f(1.0f, -0.201f);
+    glVertex2f(-1.0f, -0.201f);
+    
+    
+    //lines for the floor
+    glVertex2f(1.0f, -0.2f);
+    glVertex2f(1.0f, -1.0f);
+    
+    //glVertex2f(0.875f, -0.2f);
+    //glVertex2f(0.875f, -1.0f);
+    
+    glVertex2f(0.85f, -0.2f);
+    glVertex2f(0.85f, -1.0f);
+    
+    glVertex2f(0.7f, -0.2f);
+    glVertex2f(0.7f, -1.0f);
+    
+    glVertex2f(0.55f, -0.2f);
+    glVertex2f(0.55f, -1.0f);
+    
+    //glVertex2f(0.375f, -0.2f);
+    //glVertex2f(0.375f, -1.0f);
+        
+    glVertex2f(0.4f, -0.2f);
+    glVertex2f(0.4f, -1.0f);
+    
+    glVertex2f(0.25f, -0.2f);
+    glVertex2f(0.25f, -1.0f);
+    
+    //glVertex2f(0.2f, -0.2f);
+    //glVertex2f(0.2f, -1.0f);
+    
+    glVertex2f(0.1f, -0.2f);
+    glVertex2f(0.1f, -1.0f);
+    
+    glVertex2f(-0.05f, -0.2f);
+    glVertex2f(-0.05f, -1.0f);
+    
+    glVertex2f(-0.2f, -0.2f);
+    glVertex2f(-0.2f, -1.0f);
+    
+    glVertex2f(-0.35f, -0.2f);
+    glVertex2f(-0.35f, -1.0f);
+    
+   glVertex2f(-0.8f, -0.2f);
+    glVertex2f(-0.8f, -1.0f);
+    
+    glVertex2f(-0.5f, -0.2f);
+    glVertex2f(-0.5f, -1.0f);
+    
+    glVertex2f(-0.65, -0.2f);
+    glVertex2f(-0.65f, -1.0f);
+    
+    glVertex2f(-0.95f, -0.2f);
+    glVertex2f(-.95f, -1.0f);
+    
+    
+    
+    //lines for the wall
+    glVertex2f(1.0f, -0.2f);
+    glVertex2f(1.0f, 1.0f);
+    
+    glVertex2f(0.9f, -0.2f);
+    glVertex2f(0.9f, 1.0f);
+    
+    glVertex2f(0.8f, -0.2f);
+    glVertex2f(0.8f, 1.0f);
+    
+    glVertex2f(0.7f, -0.2f);
+    glVertex2f(0.7f, 1.0f);
+    
+    glVertex2f(0.6f, -0.2f);
+    glVertex2f(0.6f, 1.0f);
+    
+    glVertex2f(0.5f, -0.2f);
+    glVertex2f(0.5f, 1.0f);
+        
+    glVertex2f(0.4f, -0.2f);
+    glVertex2f(0.4f, 1.0f);
+    
+    glVertex2f(0.3f, -0.2f);
+    glVertex2f(0.3f, 1.0f);
+    
+    glVertex2f(0.2f, -0.2f);
+    glVertex2f(0.2f, 1.0f);
+    
+    glVertex2f(0.1f, -0.2f);
+    glVertex2f(0.1f, 1.0f);
+    
+    glVertex2f(0.0f, -0.2f);
+    glVertex2f(0.0f, 1.0f);
+    
+    glVertex2f(-0.1f, -0.2f);
+    glVertex2f(-0.1f, 1.0f);
+    
+    glVertex2f(-0.2f, -0.2f);
+    glVertex2f(-0.2f, 1.0f);
+    
+    glVertex2f(-0.3f, -0.2f);
+    glVertex2f(-0.3f, 1.0f);
+    
+    glVertex2f(-0.4f, -0.2f);
+    glVertex2f(-0.4f, 1.0f);
+    
+    glVertex2f(-0.5f, -0.2f);
+    glVertex2f(-0.5f, 1.0f);
+    
+    glVertex2f(-0.6f, -0.2f);
+    glVertex2f(-0.6f, 1.0f);
+    
+    glVertex2f(-0.7f, -0.2f);
+    glVertex2f(-0.7f, 1.0f);
+    
+    glVertex2f(-0.8f, -0.2f);
+    glVertex2f(-0.8f, 1.0f);
+    
+    glVertex2f(-0.9f, -0.2f);
+    glVertex2f(-0.9f, 1.0f);
+    
+    glVertex2f(1.0f, -0.2f);
+    glVertex2f(1.0f, 1.0f);
+    
+    
+    
+    
+    glEnd();
+ 
+}
+
+
+
+
+
+
+
+void init(){
+    glMatrixMode(GL_PROJECTION);
+    
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.36,0.25,0.20,0.0);
+    
+}
+
+void DrawAll(){
+    glClearColor(0.36,0.25,0.20,1.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    stage();
+    line();
+    display();
+    glFlush();
+}
+
+int main(int argc, char **argv) {
+    glutInit(&argc , argv);
+    glutInitWindowSize(800, 500);
+    glutInitWindowPosition(50, 50);
+    glutCreateWindow("ChatGPT Robot");
+    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+    glutIdleFunc(play);
+    init();
+    glutDisplayFunc(DrawAll);
+    glutReshapeFunc(reshapeFunc);
+    glutKeyboardFunc(key);
+    glutMainLoop();
+    
+    
+    
+}
